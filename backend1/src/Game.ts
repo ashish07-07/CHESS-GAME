@@ -83,6 +83,7 @@
 //     }
 //   }
 // }
+import { WebSocket } from "ws";
 
 import { Chess } from "chess.js";
 import { GAME_OVER, MOVE } from "./messages";
@@ -135,7 +136,7 @@ export class Game {
     }
 
     if (this.board.isGameOver()) {
-      this.player1.emit(
+      this.player1.send(
         JSON.stringify({
           type: GAME_OVER,
           payload: {
@@ -143,7 +144,7 @@ export class Game {
           },
         })
       );
-      this.player2.emit(
+      this.player2.send(
         JSON.stringify({
           type: GAME_OVER,
           payload: {
@@ -154,14 +155,14 @@ export class Game {
       return;
     }
     if (this.board.history().length % 2 === 0) {
-      this.player2.emit(
+      this.player2.send(
         JSON.stringify({
           type: MOVE,
           payload: move,
         })
       );
     } else {
-      this.player1.emit(
+      this.player1.send(
         JSON.stringify({
           type: MOVE,
           payload: move,
