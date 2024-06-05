@@ -113,7 +113,7 @@
 
 // Import WebSocket type from "ws"
 // import WebSocket from "ws";
-import WebSocket, { Server /* etc */ } from "ws";
+import WebSocket, { Server /* etc */, WebSocketServer } from "ws";
 import { Game } from "./Game";
 import { INIT_GAME, MOVE } from "./messages";
 

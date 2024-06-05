@@ -56,14 +56,16 @@ class Game {
             }));
             return;
         }
+        console.log(this.board);
+        console.log(this.board.history().length);
         if (this.board.history().length % 2 === 0) {
-            this.player2.send(JSON.stringify({
+            this.player1.send(JSON.stringify({
                 type: messages_1.MOVE,
                 payload: move,
             }));
         }
         else {
-            this.player1.send(JSON.stringify({
+            this.player2.send(JSON.stringify({
                 type: messages_1.MOVE,
                 payload: move,
             }));

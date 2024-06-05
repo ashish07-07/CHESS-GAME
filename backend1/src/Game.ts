@@ -154,15 +154,18 @@ export class Game {
       );
       return;
     }
+
+    console.log(this.board);
+    console.log(this.board.history().length);
     if (this.board.history().length % 2 === 0) {
-      this.player2.send(
+      this.player1.send(
         JSON.stringify({
           type: MOVE,
           payload: move,
         })
       );
     } else {
-      this.player1.send(
+      this.player2.send(
         JSON.stringify({
           type: MOVE,
           payload: move,
