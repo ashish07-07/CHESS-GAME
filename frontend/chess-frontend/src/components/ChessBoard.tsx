@@ -11,5 +11,22 @@ export function ChessBoard({
     color: Color;
   } | null)[][];
 }) {
-  return <div className="text-white-200 w-full">Chess Board Bhai genius</div>;
+  return (
+    <div className="text-white-200 w-full">
+      {board.map((row, i) => (
+        <div key={i} className="flex">
+          {row.map((square, j) => (
+            <div
+              key={j}
+              className={`w-14 h-8 ${
+                (i + j) % 2 == 0 ? "bg-green-600" : "bg-green-300"
+              }`}
+            >
+              {square ? square.type : ""}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
 }
