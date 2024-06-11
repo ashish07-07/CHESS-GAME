@@ -1,17 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { Children } from "react";
 
-export function Button({ onClick }:{onClick:()
-    
+export function Button({
+  onClick,
+  children,
+}: {
+  onClick: () => void;
+  children: React.ReactNode;
 }) {
-  const navigate = useNavigate();
   return (
     <button
-      onClick={function () {
-        navigate("/game");
-      }}
+      onClick={onClick}
       className="px-8 py-4 text-2xl bg-green-500 hover:bg-green-700 text-white font-bold rounded"
     >
-      Play Online
+      {children}
     </button>
   );
 }
