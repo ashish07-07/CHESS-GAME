@@ -18,5 +18,6 @@ wss.on("connection", function connection(ws) {
   ws.on("close", function () {
     gameManager.removeuser(ws);
   });
-  ws.send("hello from server");
+  // ws.send("hello from server");
+  ws.send;
 });
