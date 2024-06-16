@@ -95,6 +95,7 @@ export function Game() {
   const socket = useSocket();
   const [chess, setChess] = useState(new Chess());
   const [board, setBoard] = useState(chess.board());
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
     if (!socket) {
@@ -111,6 +112,7 @@ export function Game() {
         case INIT_GAME:
           const newChess = new Chess();
           setChess(newChess);
+          setStarted(true);
           setBoard(newChess.board());
           console.log("GAME INITIALIZED");
           break;
@@ -147,17 +149,19 @@ export function Game() {
             />
           </div>
           <div className="bg-slate-900 items-center p-1">
-            <Button
-              onClick={() => {
-                socket.send(
-                  JSON.stringify({
-                    type: INIT_GAME,
-                  })
-                );
-              }}
-            >
-              Play
-            </Button>
+            {!started && (
+              <Button
+                onClick={() => {
+                  socket.send(
+                    JSON.stringify({
+                      type: INIT_GAME,
+                    })
+                  );
+                }}
+              >
+                Play
+              </Button>
+            )}
           </div>
         </div>
       </div>
